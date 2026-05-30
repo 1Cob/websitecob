@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projeler — COB</title>
+  <meta name="description" content="Üzerinde çalıştığım projeler, denemeler ve işler." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css?v=2" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="../index.html" class="brand"><span class="brand__dot"></span> COB</a>
+      <button class="nav__toggle" aria-label="Menü">☰</button>
+      <ul class="nav__links">
+        <li><a href="../index.html">Anasayfa</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="makaleler.html">Makaleler</a></li>
+        <li><a href="projeler.html" class="active">Projeler</a></li>
+        <li><a href="muhendislik.html">Mühendislik</a></li>
+        <li><a href="oyunlar.html">Oyunlar</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="muzik.html">Müzik</a></li>
+        <li><a href="haberler.html">Haberler</a></li>
+        <li><a href="hesap.html">Hesap</a></li>
+        <li><a href="savnot.html">Savnot</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" style="padding-bottom:30px;">
+    <div class="container hero__inner">
+      <span class="hero__badge"><span class="pulse"></span> projeler</span>
+      <h1>Projeler 🚀</h1>
+      <p class="lead">Üzerinde çalıştığım işler, denemeler ve fikirler. Tıklayıp inceleyebilirsin.</p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:10px;">
+    <div class="container">
+      <div class="grid grid--3" id="project-list"></div>
+      <p id="empty" style="color:var(--text-mute);display:none;">Henüz proje eklenmedi.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>© <span id="year"></span> Can Okan Biçer · Tüm hakları saklıdır.</div>
+      <div class="footer__social">
+        <a href="https://github.com/1Cob" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://instagram.com/canokanbicer" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:canokanbicer@gmail.com">E-posta</a>
+        <a href="https://www.savnot.com" target="_blank" rel="noopener">Savnot</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/data.js?v=2"></script>
+  <script src="../js/player.js?v=2"></script>
+  <script src="../js/counter.js?v=2"></script>
+  <script src="../js/spa.js?v=2"></script>
+  <script src="../js/projeler.js?v=2"></script>
+  <script src="../js/main.js?v=2"></script>
+</body>
+</html>

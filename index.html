@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COB — Kişisel Site</title>
+  <meta name="description" content="Yazılarım, makalelerim, projelerim, mühendislik notlarım, mini oyunlarım ve daha fazlası." />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <!-- Sosyal paylaşım (Open Graph / Twitter) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="COB — Can Okan Biçer" />
+  <meta property="og:description" content="Blog, makaleler, projeler, mühendislik ders notları, mini oyunlar ve bilimsel hesap makinesi." />
+  <meta property="og:url" content="https://canokanbicer.com" />
+  <meta property="og:image" content="https://canokanbicer.com/favicon.svg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="COB — Can Okan Biçer" />
+  <meta name="twitter:description" content="Blog, makaleler, projeler, mühendislik ders notları, mini oyunlar ve bilimsel hesap makinesi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css?v=2" />
+</head>
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="brand"><span class="brand__dot"></span> COB</a>
+      <button class="nav__toggle" aria-label="Menü">☰</button>
+      <ul class="nav__links">
+        <li><a href="index.html" class="active">Anasayfa</a></li>
+        <li><a href="pages/blog.html">Blog</a></li>
+        <li><a href="pages/makaleler.html">Makaleler</a></li>
+        <li><a href="pages/projeler.html">Projeler</a></li>
+        <li><a href="pages/muhendislik.html">Mühendislik</a></li>
+        <li><a href="pages/oyunlar.html">Oyunlar</a></li>
+        <li><a href="pages/galeri.html">Galeri</a></li>
+        <li><a href="pages/muzik.html">Müzik</a></li>
+        <li><a href="pages/haberler.html">Haberler</a></li>
+        <li><a href="pages/hesap.html">Hesap</a></li>
+        <li><a href="pages/savnot.html">Savnot</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="container hero__inner">
+      <span class="hero__badge"><span class="pulse"></span> Hoş geldin · kişisel köşem</span>
+      <h1><span class="grad">Projelerimi</span>, fikirlerimi ve deneyimlerimi paylaştığım yer.</h1>
+      <p class="lead">
+        Projelerimi, makalelerimi, düşüncelerimi ve tecrübelerimi; yer yer cesurca,
+        zaman zaman eleştirerek, araya espri katarak ama her zaman anlaşılır ve modern
+        bir dille sunduğum kişisel alanım. Aşağıdan keşfetmeye başla.
+      </p>
+      <div class="hero__actions">
+        <a href="pages/blog.html" class="btn btn--primary">Yazıları oku →</a>
+        <a href="pages/galeri.html" class="btn btn--ghost">🖼️ Galeri</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ SON YAZILAR ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">// blog</span>
+        <h2 class="section__title">Son yazılar</h2>
+        <p class="section__desc">Aklımdan geçenler, denemeler ve notlar.</p>
+      </div>
+      <div class="grid grid--3" id="latest-posts">
+        <!-- JS ile doldurulacak -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BÖLÜMLER ============ -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">// keşfet</span>
+        <h2 class="section__title">Bölümler</h2>
+        <p class="section__desc">Sitenin farklı köşeleri.</p>
+      </div>
+      <div class="grid grid--3">
+        <a href="pages/makaleler.html" class="card feature reveal">
+          <div class="feature__icon">📝</div>
+          <div class="card__title">Makaleler</div>
+          <p class="card__text">Daha uzun, derinlemesine yazılar.</p>
+          <span class="feature__arrow">İncele →</span>
+        </a>
+        <a href="pages/projeler.html" class="card feature reveal">
+          <div class="feature__icon">🚀</div>
+          <div class="card__title">Projeler</div>
+          <p class="card__text">Üzerinde çalıştığım işler ve denemeler.</p>
+          <span class="feature__arrow">İncele →</span>
+        </a>
+        <a href="pages/muhendislik.html" class="card feature reveal">
+          <div class="feature__icon">⚙️</div>
+          <div class="card__title">Mühendislik</div>
+          <p class="card__text">Teknik bilgiler ve mühendislik ders notları.</p>
+          <span class="feature__arrow">İncele →</span>
+        </a>
+        <a href="pages/blog.html" class="card feature reveal">
+          <div class="feature__icon">📔</div>
+          <div class="card__title">Günlük</div>
+          <p class="card__text">Aklımdan geçenler, kısa notlar ve denemeler.</p>
+          <span class="feature__arrow">Oku →</span>
+        </a>
+        <a href="pages/muzik.html" class="card feature reveal">
+          <div class="feature__icon">🎵</div>
+          <div class="card__title">Müzik</div>
+          <p class="card__text">Dinlediklerim ve paylaştıklarım.</p>
+          <span class="feature__arrow">Dinle →</span>
+        </a>
+        <a href="pages/savnot.html" class="card feature reveal">
+          <div class="feature__icon">⭐</div>
+          <div class="card__title">Savnot</div>
+          <p class="card__text">Sakin sosyal ağ — günde tek paylaşım. Web ve App Store.</p>
+          <span class="feature__arrow">Keşfet →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>© <span id="year"></span> Can Okan Biçer · Tüm hakları saklıdır.</div>
+      <div class="footer__social">
+        <a href="https://github.com/1Cob" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://instagram.com/canokanbicer" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:canokanbicer@gmail.com">E-posta</a>
+        <a href="https://www.savnot.com" target="_blank" rel="noopener">Savnot</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js?v=2"></script>
+  <script src="js/player.js?v=2"></script>
+  <script src="js/counter.js?v=2"></script>
+  <script src="js/spa.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
+</body>
+</html>

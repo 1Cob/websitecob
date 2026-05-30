@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hesap Makinesi — COB</title>
+  <meta name="description" content="Geçmiş kaydı tutan bilimsel hesap makinesi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css?v=2" />
+  <link rel="stylesheet" href="../css/calc.css?v=2" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="../index.html" class="brand"><span class="brand__dot"></span> COB</a>
+      <button class="nav__toggle" aria-label="Menü">☰</button>
+      <ul class="nav__links">
+        <li><a href="../index.html">Anasayfa</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="makaleler.html">Makaleler</a></li>
+        <li><a href="projeler.html">Projeler</a></li>
+        <li><a href="muhendislik.html">Mühendislik</a></li>
+        <li><a href="oyunlar.html">Oyunlar</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="muzik.html">Müzik</a></li>
+        <li><a href="haberler.html">Haberler</a></li>
+        <li><a href="hesap.html" class="active">Hesap</a></li>
+        <li><a href="savnot.html">Savnot</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="game container" style="max-width:1000px;">
+    <div class="game__head">
+      <h1>🧮 Bilimsel Hesap Makinesi</h1>
+      <p>İşlemler sağdaki panelde satır satır tutulur (son 50). Bir satıra tıklayınca o işleme geri dönersin; fareyle seçip kopyalayabilirsin.</p>
+    </div>
+
+    <div class="calc-wrap">
+      <!-- Hesap makinesi -->
+      <div class="calc">
+        <div class="calc__screen">
+          <input class="calc__expr" id="expr" type="text" inputmode="text"
+                 placeholder="örn. sin(30)+2^3, nCr(6,2), log2(1024)" autocomplete="off" spellcheck="false" />
+          <div class="calc__result" id="result">0</div>
+          <div class="calc__mem" id="memInd"></div>
+        </div>
+
+        <div class="calc__actions">
+          <button class="ckey ckey--mode" data-act="mode" id="modeBtn">DER</button>
+          <button class="ckey ckey--mem" data-act="mc">MC</button>
+          <button class="ckey ckey--mem" data-act="mr">MR</button>
+          <button class="ckey ckey--mem" data-act="ms">MS</button>
+          <button class="ckey ckey--mem" data-act="mplus">M+</button>
+          <button class="ckey ckey--mem" data-act="mminus">M−</button>
+        </div>
+
+        <!-- Bilimsel fonksiyonlar -->
+        <div class="calc__sci">
+          <button class="ckey ckey--fn" data-ins="sin(">sin</button>
+          <button class="ckey ckey--fn" data-ins="cos(">cos</button>
+          <button class="ckey ckey--fn" data-ins="tan(">tan</button>
+          <button class="ckey ckey--fn" data-ins="asin(">sin⁻¹</button>
+          <button class="ckey ckey--fn" data-ins="acos(">cos⁻¹</button>
+          <button class="ckey ckey--fn" data-ins="atan(">tan⁻¹</button>
+
+          <button class="ckey ckey--fn" data-ins="sinh(">sinh</button>
+          <button class="ckey ckey--fn" data-ins="cosh(">cosh</button>
+          <button class="ckey ckey--fn" data-ins="tanh(">tanh</button>
+          <button class="ckey ckey--fn" data-ins="asinh(">sinh⁻¹</button>
+          <button class="ckey ckey--fn" data-ins="acosh(">cosh⁻¹</button>
+          <button class="ckey ckey--fn" data-ins="atanh(">tanh⁻¹</button>
+
+          <button class="ckey ckey--fn" data-ins="ln(">ln</button>
+          <button class="ckey ckey--fn" data-ins="log(">log</button>
+          <button class="ckey ckey--fn" data-ins="log2(">log₂</button>
+          <button class="ckey ckey--fn" data-ins="exp(">eˣ</button>
+          <button class="ckey ckey--fn" data-ins="exp10(">10ˣ</button>
+          <button class="ckey ckey--fn" data-ins="exp2(">2ˣ</button>
+
+          <button class="ckey ckey--fn" data-ins="^2">x²</button>
+          <button class="ckey ckey--fn" data-ins="^3">x³</button>
+          <button class="ckey ckey--fn" data-ins="^">xʸ</button>
+          <button class="ckey ckey--fn" data-ins="sqrt(">√</button>
+          <button class="ckey ckey--fn" data-ins="cbrt(">∛</button>
+          <button class="ckey ckey--fn" data-ins="nthroot(">ʸ√x</button>
+
+          <button class="ckey ckey--fn" data-ins="inv(">1/x</button>
+          <button class="ckey ckey--fn" data-ins="abs(">|x|</button>
+          <button class="ckey ckey--fn" data-ins="!">n!</button>
+          <button class="ckey ckey--fn" data-ins="gamma(">Γ</button>
+          <button class="ckey ckey--fn" data-ins="ncr(">nCr</button>
+          <button class="ckey ckey--fn" data-ins="npr(">nPr</button>
+
+          <button class="ckey ckey--fn" data-ins="%">mod</button>
+          <button class="ckey ckey--fn" data-ins="sign(">sgn</button>
+          <button class="ckey ckey--fn" data-ins="floor(">⌊x⌋</button>
+          <button class="ckey ckey--fn" data-ins="ceil(">⌈x⌉</button>
+          <button class="ckey ckey--fn" data-ins="round(">round</button>
+          <button class="ckey ckey--fn" data-ins="trunc(">trunc</button>
+
+          <button class="ckey ckey--fn" data-ins="pi">π</button>
+          <button class="ckey ckey--fn" data-ins="e">e</button>
+          <button class="ckey ckey--fn" data-ins="phi">φ</button>
+          <button class="ckey ckey--fn" data-ins="rand()">rand</button>
+          <button class="ckey ckey--fn" data-ins="gcd(">gcd</button>
+          <button class="ckey ckey--fn" data-ins="lcm(">lcm</button>
+        </div>
+
+        <!-- Temel tuş takımı -->
+        <div class="calc__basic">
+          <button class="ckey ckey--warn" data-act="clear">C</button>
+          <button class="ckey ckey--warn" data-act="back">⌫</button>
+          <button class="ckey ckey--op" data-ins="(">(</button>
+          <button class="ckey ckey--op" data-ins=")">)</button>
+          <button class="ckey ckey--op" data-ins="^">^</button>
+
+          <button class="ckey" data-ins="7">7</button>
+          <button class="ckey" data-ins="8">8</button>
+          <button class="ckey" data-ins="9">9</button>
+          <button class="ckey ckey--op" data-ins=",">,</button>
+          <button class="ckey ckey--op" data-ins="/">÷</button>
+
+          <button class="ckey" data-ins="4">4</button>
+          <button class="ckey" data-ins="5">5</button>
+          <button class="ckey" data-ins="6">6</button>
+          <button class="ckey ckey--op" data-ins="%">%</button>
+          <button class="ckey ckey--op" data-ins="*">×</button>
+
+          <button class="ckey" data-ins="1">1</button>
+          <button class="ckey" data-ins="2">2</button>
+          <button class="ckey" data-ins="3">3</button>
+          <button class="ckey ckey--fn" data-act="ans">Ans</button>
+          <button class="ckey ckey--op" data-ins="-">−</button>
+
+          <button class="ckey" data-ins="0">0</button>
+          <button class="ckey" data-ins=".">.</button>
+          <button class="ckey ckey--op" data-ins="*10^">×10ˣ</button>
+          <button class="ckey ckey--op" data-ins="+">+</button>
+          <button class="ckey ckey--eq" data-act="eq">=</button>
+        </div>
+      </div>
+
+      <!-- Geçmiş paneli (sağ) -->
+      <aside class="calc-history">
+        <div class="calc-history__head">
+          <span>Geçmiş <small id="histCount">(0/50)</small></span>
+          <button id="clearHist" class="calc-history__clear">Temizle</button>
+        </div>
+        <ol class="calc-history__list" id="history"></ol>
+        <p class="calc-history__hint" id="histHint">Henüz işlem yok. Bir hesap yap, burada birikecek.</p>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>© <span id="year"></span> Can Okan Biçer · Tüm hakları saklıdır.</div>
+      <div class="footer__social">
+        <a href="https://github.com/1Cob" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://instagram.com/canokanbicer" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:canokanbicer@gmail.com">E-posta</a>
+        <a href="https://www.savnot.com" target="_blank" rel="noopener">Savnot</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/data.js?v=2"></script>
+  <script src="../js/player.js?v=2"></script>
+  <script src="../js/counter.js?v=2"></script>
+  <script src="../js/spa.js?v=2"></script>
+  <script src="../js/hesap.js?v=2"></script>
+  <script src="../js/main.js?v=2"></script>
+</body>
+</html>

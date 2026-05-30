@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yılan — COB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css?v=2" />
+  <link rel="stylesheet" href="../css/games.css?v=2" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="../index.html" class="brand"><span class="brand__dot"></span> COB</a>
+      <button class="nav__toggle" aria-label="Menü">☰</button>
+      <ul class="nav__links">
+        <li><a href="../index.html">Anasayfa</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="makaleler.html">Makaleler</a></li>
+        <li><a href="projeler.html">Projeler</a></li>
+        <li><a href="muhendislik.html">Mühendislik</a></li>
+        <li><a href="oyunlar.html" class="active">Oyunlar</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="muzik.html">Müzik</a></li>
+        <li><a href="haberler.html">Haberler</a></li>
+        <li><a href="hesap.html">Hesap</a></li>
+        <li><a href="savnot.html">Savnot</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="game container">
+    <a class="article__back" href="oyunlar.html">← Oyunlar</a>
+    <div class="game__head">
+      <h1>🐍 Yılan</h1>
+      <p>Yemleri topla, uzadıkça hızlan. <strong>Ok tuşları</strong> veya <strong>WASD</strong> ile yönlendir. Kendine ya da duvara çarpma!</p>
+    </div>
+
+    <div class="tetris">
+      <canvas id="snake" class="tetris__board" width="440" height="440"></canvas>
+      <div class="tetris__side">
+        <div class="panel"><span class="stat__label">Skor</span><span class="stat__val" id="s-score">0</span></div>
+        <div class="panel"><span class="stat__label">Rekor</span><span class="stat__val" id="s-best">0</span></div>
+        <button class="btn btn--primary" id="s-start" style="width:100%;">Başla</button>
+        <p class="tetris__hint" id="s-msg">Başlamak için tıkla</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>© <span id="year"></span> Can Okan Biçer · Tüm hakları saklıdır.</div>
+      <div class="footer__social">
+        <a href="https://github.com/1Cob" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://instagram.com/canokanbicer" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:canokanbicer@gmail.com">E-posta</a>
+        <a href="https://www.savnot.com" target="_blank" rel="noopener">Savnot</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/data.js?v=2"></script>
+  <script src="../js/player.js?v=2"></script>
+  <script src="../js/counter.js?v=2"></script>
+  <script src="../js/spa.js?v=2"></script>
+  <script src="../js/game-yilan.js?v=2"></script>
+  <script src="../js/main.js?v=2"></script>
+</body>
+</html>

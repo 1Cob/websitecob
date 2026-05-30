@@ -1,0 +1,199 @@
+/* =========================================================
+   Bilimsel Hesap Makinesi stilleri
+   ========================================================= */
+.calc-wrap {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 22px;
+  align-items: start;
+}
+
+/* ---- Hesap makinesi ---- */
+.calc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+.calc__screen {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+.calc__expr {
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  outline: none;
+}
+.calc__expr::placeholder { color: var(--text-mute); }
+.calc__result {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--accent-2);
+  margin-top: 8px;
+  min-height: 32px;
+  word-break: break-all;
+}
+.calc__result--err { color: var(--accent-3); font-size: 1rem; font-weight: 500; }
+.calc__mem {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  min-height: 16px;
+  margin-top: 4px;
+}
+
+.calc__actions {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.calc__sci {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 7px;
+  margin-bottom: 10px;
+}
+.calc__basic {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+.ckey {
+  padding: 13px 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--trans);
+  font-family: var(--font-sans);
+}
+.ckey { position: relative; }
+.ckey:hover { border-color: var(--accent); transform: translateY(-1px); z-index: 100; }
+.ckey:active { transform: translateY(0); }
+
+/* İpucu baloncuğu */
+.ckey[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  top: calc(100% + 9px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  width: max-content;
+  max-width: 210px;
+  white-space: normal;
+  text-align: left;
+  background: var(--bg-soft);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  border-radius: 9px;
+  padding: 8px 11px;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 500;
+  line-height: 1.45;
+  box-shadow: var(--shadow);
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.ckey[data-tip]::before {
+  content: "";
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: var(--accent);
+  z-index: 91;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s;
+}
+.ckey[data-tip]:hover::after { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); transition-delay: 0.3s; }
+.ckey[data-tip]:hover::before { opacity: 1; visibility: visible; transition-delay: 0.3s; }
+.ckey--fn { background: var(--bg-soft); color: var(--text-dim); font-size: 0.82rem; font-family: var(--font-mono); padding: 12px 0; }
+.calc__sci .ckey { padding: 11px 0; }
+.ckey--mem { background: var(--bg-soft); color: var(--accent); font-size: 0.82rem; font-family: var(--font-mono); padding: 10px 0; }
+.ckey--op { color: var(--accent); font-size: 1.2rem; }
+.ckey--warn { color: var(--accent-3); }
+.ckey--mode { color: var(--accent-2); font-family: var(--font-mono); }
+.ckey--eq {
+  background: linear-gradient(135deg, var(--accent), #8a6cff);
+  color: #fff; border: none; font-size: 1.3rem;
+  box-shadow: 0 6px 18px var(--glow);
+}
+.ckey--eq:hover { color: #fff; }
+
+/* ---- Geçmiş paneli ---- */
+.calc-history {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+}
+.calc-history__head {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px; font-weight: 700;
+}
+.calc-history__head small { color: var(--text-mute); font-weight: 400; font-family: var(--font-mono); }
+.calc-history__clear {
+  background: none; border: 1px solid var(--border); color: var(--text-dim);
+  font-size: 0.8rem; padding: 5px 10px; border-radius: 8px; cursor: pointer; transition: var(--trans);
+}
+.calc-history__clear:hover { border-color: var(--accent-3); color: var(--accent-3); }
+.calc-history__list {
+  list-style: none; margin: 0; padding: 0;
+  overflow-y: auto; flex: 1;
+}
+.hitem {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: var(--trans);
+}
+.hitem:hover { border-color: var(--accent); background: var(--surface-2); }
+.hitem__expr {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  word-break: break-all;
+}
+.hitem__eq {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-2);
+  margin-top: 2px;
+}
+.calc-history__hint { color: var(--text-mute); font-size: 0.85rem; }
+
+@media (max-width: 800px) {
+  .calc-wrap { grid-template-columns: 1fr; }
+  .calc-history { position: static; max-height: 320px; }
+}

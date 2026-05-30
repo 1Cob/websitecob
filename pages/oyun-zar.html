@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tavla Zarı — COB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css?v=2" />
+  <link rel="stylesheet" href="../css/games.css?v=2" />
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="container nav__inner">
+      <a href="../index.html" class="brand"><span class="brand__dot"></span> COB</a>
+      <button class="nav__toggle" aria-label="Menü">☰</button>
+      <ul class="nav__links">
+        <li><a href="../index.html">Anasayfa</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="makaleler.html">Makaleler</a></li>
+        <li><a href="projeler.html">Projeler</a></li>
+        <li><a href="muhendislik.html">Mühendislik</a></li>
+        <li><a href="oyunlar.html" class="active">Oyunlar</a></li>
+        <li><a href="galeri.html">Galeri</a></li>
+        <li><a href="muzik.html">Müzik</a></li>
+        <li><a href="haberler.html">Haberler</a></li>
+        <li><a href="hesap.html">Hesap</a></li>
+        <li><a href="savnot.html">Savnot</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="game container">
+    <a class="article__back" href="oyunlar.html">← Oyunlar</a>
+    <div class="game__head">
+      <h1>🎲 Tavla Zarı</h1>
+      <p>İki oyuncu için zar atıcı. Renginizi seçin, sırayla atın; <strong>geçmiş</strong> ve atılan zarlara göre <strong>kazanma oranı</strong> aşağıda. Klavyeden <strong>1</strong> ve <strong>2</strong> ile de atabilirsiniz.</p>
+    </div>
+
+    <!-- Kazanma oranı çubuğu -->
+    <div class="winbar">
+      <div class="winbar__side">
+        <span class="winbar__name" id="w1-name">1. Oyuncu</span>
+        <span class="winbar__pct" id="w1-pct">50%</span>
+      </div>
+      <div class="winbar__track">
+        <div class="winbar__seg winbar__seg--1" id="w1-fill" style="width:50%"></div>
+        <div class="winbar__seg winbar__seg--2" id="w2-fill" style="width:50%"></div>
+      </div>
+      <div class="winbar__side winbar__side--right">
+        <span class="winbar__name" id="w2-name">2. Oyuncu</span>
+        <span class="winbar__pct" id="w2-pct">50%</span>
+      </div>
+    </div>
+
+    <div class="players">
+
+      <!-- 1. OYUNCU -->
+      <div class="player" data-default="siyah">
+        <input class="player__name" data-name value="1. Oyuncu" maxlength="16" />
+        <div class="player__colors" data-colors></div>
+        <div class="zar__table">
+          <div class="die" data-die></div>
+          <div class="die" data-die></div>
+        </div>
+        <div class="zar__msg" data-last>Hazır</div>
+        <button class="btn btn--primary" data-roll style="width:100%;">🎲 Zar At</button>
+        <div class="player__stats">
+          <div class="stat"><span class="stat__label">Atış</span><span class="stat__val" data-rolls>0</span></div>
+          <div class="stat"><span class="stat__label">Ortalama</span><span class="stat__val" data-avg>0</span></div>
+          <div class="stat"><span class="stat__label">En Yüksek</span><span class="stat__val" data-max>0</span></div>
+        </div>
+        <div class="history" data-history></div>
+      </div>
+
+      <!-- 2. OYUNCU -->
+      <div class="player" data-default="beyaz">
+        <input class="player__name" data-name value="2. Oyuncu" maxlength="16" />
+        <div class="player__colors" data-colors></div>
+        <div class="zar__table">
+          <div class="die" data-die></div>
+          <div class="die" data-die></div>
+        </div>
+        <div class="zar__msg" data-last>Hazır</div>
+        <button class="btn btn--primary" data-roll style="width:100%;">🎲 Zar At</button>
+        <div class="player__stats">
+          <div class="stat"><span class="stat__label">Atış</span><span class="stat__val" data-rolls>0</span></div>
+          <div class="stat"><span class="stat__label">Ortalama</span><span class="stat__val" data-avg>0</span></div>
+          <div class="stat"><span class="stat__label">En Yüksek</span><span class="stat__val" data-max>0</span></div>
+        </div>
+        <div class="history" data-history></div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:24px;">
+      <button class="btn btn--ghost" id="z-reset">↻ Tüm Geçmişi Sıfırla</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>© <span id="year"></span> Can Okan Biçer · Tüm hakları saklıdır.</div>
+      <div class="footer__social">
+        <a href="https://github.com/1Cob" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://instagram.com/canokanbicer" target="_blank" rel="noopener">Instagram</a>
+        <a href="mailto:canokanbicer@gmail.com">E-posta</a>
+        <a href="https://www.savnot.com" target="_blank" rel="noopener">Savnot</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/data.js?v=2"></script>
+  <script src="../js/player.js?v=2"></script>
+  <script src="../js/counter.js?v=2"></script>
+  <script src="../js/spa.js?v=2"></script>
+  <script src="../js/game-zar.js?v=2"></script>
+  <script src="../js/main.js?v=2"></script>
+</body>
+</html>
