@@ -1,21 +1,28 @@
 /* =========================================================
-   Netlify Function: Güncel inşaat & mühendislik haberleri
+   Netlify Function: İnşaat & mühendislik haberleri + dünyadan duyurular
    Kaynak: Google News RSS (yalnızca BAŞLIK + KAYNAK + LİNK).
    Haber metni kopyalanmaz; kullanıcı kaynağa yönlendirilir.
-   Çağrı: /.netlify/functions/haberler
+   Çağrı: /.netlify/functions/haberler  →  { news:[...], duyurular:[...] }
    ========================================================= */
 
-const FEEDS = [
+// 1) Genel sektör haberleri (TR + dünya)
+const FEEDS_NEWS = [
   { q: '"inşaat mühendisliği" OR "inşaat sektörü"', hl: "tr", gl: "TR", ceid: "TR:tr" },
   { q: '"civil engineering"', hl: "en-US", gl: "US", ceid: "US:en" },
   { q: '"construction technology" OR "structural engineering"', hl: "en-US", gl: "US", ceid: "US:en" },
+];
+
+// 2) Dünyadan gelişmeler & duyurular (yenilik, buluş, etkinlik — yabancı kaynaklar)
+const FEEDS_DUYURU = [
+  { q: '("civil engineering" OR construction) (innovation OR breakthrough OR "new technology")', hl: "en-US", gl: "US", ceid: "US:en" },
+  { q: 'construction (megaproject OR "world record" OR landmark) (bridge OR tower OR tunnel)', hl: "en-US", gl: "US", ceid: "US:en" },
+  { q: '"structural engineering" (award OR conference OR summit OR standard)', hl: "en-US", gl: "US", ceid: "US:en" },
 ];
 
 function feedUrl(f) {
   const p = new URLSearchParams({ q: f.q, hl: f.hl, gl: f.gl, ceid: f.ceid });
   return "https://news.google.com/rss/search?" + p.toString();
 }
-
 function decode(s) {
   return (s || "")
     .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
@@ -46,7 +53,6 @@ function parseItems(xml) {
   }
   return items;
 }
-
 async function fetchFeed(url) {
   try {
     const ctrl = new AbortController();
@@ -57,29 +63,32 @@ async function fetchFeed(url) {
     return parseItems(await res.text());
   } catch (e) { return []; }
 }
-
-exports.handler = async () => {
-  const results = await Promise.all(FEEDS.map((f) => fetchFeed(feedUrl(f))));
-  const seen = new Set();
-  let items = [];
+async function collect(feeds, seen, limit) {
+  const results = await Promise.all(feeds.map((f) => fetchFeed(feedUrl(f))));
+  const out = [];
   for (const arr of results) {
     for (const it of arr) {
       if (!it.title || !it.link) continue;
       const key = it.title.toLowerCase().slice(0, 60);
       if (seen.has(key)) continue;
       seen.add(key);
-      items.push(it);
+      out.push(it);
     }
   }
-  items.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
-  items = items.slice(0, 24);
+  out.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+  return out.slice(0, limit);
+}
 
+exports.handler = async () => {
+  const seen = new Set();
+  const news = await collect(FEEDS_NEWS, seen, 20);
+  const duyurular = await collect(FEEDS_DUYURU, seen, 14);
   return {
     statusCode: 200,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
       "Cache-Control": "public, max-age=1800, s-maxage=1800",
     },
-    body: JSON.stringify({ updated: new Date().toISOString(), items }),
+    body: JSON.stringify({ updated: new Date().toISOString(), news, duyurular }),
   };
 };

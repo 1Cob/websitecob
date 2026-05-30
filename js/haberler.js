@@ -38,25 +38,33 @@
     }).join("");
   })();
 
-  /* ---- Otomatik sektör haberleri (Netlify Function) ---- */
-  (async function loadSektor() {
-    const wrap = document.getElementById("sektor");
-    const state = document.getElementById("sektor-state");
-    if (!wrap) return;
+  /* ---- Otomatik haberler + dünyadan duyurular (tek çağrı) ---- */
+  function renderFeed(wrap, items) {
+    wrap.innerHTML = items.map((it) => `
+      <a class="haber-item" href="${it.link}" target="_blank" rel="noopener">
+        <span class="haber-item__title">${esc(it.title)}</span>
+        <span class="haber-item__meta">${esc(it.source || "Kaynak")}${it.date ? " · " + fmtShort(it.date) : ""} ↗</span>
+      </a>`).join("");
+  }
+  (async function loadAuto() {
+    const sektor = document.getElementById("sektor");
+    const sektorState = document.getElementById("sektor-state");
+    const duyuru = document.getElementById("duyuru");
+    const duyuruState = document.getElementById("duyuru-state");
+    const fallback = "Bu bölüm yayındaki sitede (canokanbicer.com) otomatik yüklenir.";
     try {
       const res = await fetch("/.netlify/functions/haberler", { cache: "no-store" });
       if (!res.ok) throw new Error("yok");
       const data = await res.json();
-      if (!data.items || !data.items.length) throw new Error("boş");
-      state.style.display = "none";
-      wrap.innerHTML = data.items.map((it) => `
-        <a class="haber-item" href="${it.link}" target="_blank" rel="noopener">
-          <span class="haber-item__title">${esc(it.title)}</span>
-          <span class="haber-item__meta">${esc(it.source || "Kaynak")}${it.date ? " · " + fmtShort(it.date) : ""} ↗</span>
-        </a>`).join("");
+      const news = data.news || data.items || [];
+      const ann = data.duyurular || [];
+      if (news.length) { sektorState.style.display = "none"; renderFeed(sektor, news); }
+      else sektorState.textContent = "Şu an haber alınamadı, biraz sonra tekrar dene.";
+      if (ann.length) { duyuruState.style.display = "none"; renderFeed(duyuru, ann); }
+      else duyuruState.textContent = "Şu an duyuru alınamadı, biraz sonra tekrar dene.";
     } catch (e) {
-      // Yerelde (python sunucu) fonksiyon yok; canlı sitede çalışır
-      state.textContent = "Güncel sektör haberleri yayındaki sitede (canokanbicer.com) otomatik yüklenir.";
+      sektorState.textContent = fallback;   // yerelde fonksiyon yok
+      duyuruState.textContent = fallback;
     }
   })();
 })();
