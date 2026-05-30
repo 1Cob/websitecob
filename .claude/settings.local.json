@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(cd /Users/cemrecan/Desktop/Yazılım/websitecob *)",
-      "Read(//Users/cemrecan/**)",
-      "Bash(git add *)"
-    ]
-  }
-}
