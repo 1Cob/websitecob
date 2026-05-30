@@ -96,6 +96,12 @@ img { max-width: 100%; display: block; }
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   box-shadow: 0 0 14px var(--glow);
 }
+.brand__logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
 .nav__links {
   display: flex;
   gap: 4px;
