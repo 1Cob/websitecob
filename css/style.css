@@ -415,8 +415,15 @@ img { max-width: 100%; display: block; }
 .spor-prog__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 .spor-prog__icon { font-size: 1.8rem; }
 .spor-prog__meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-2); margin: 4px 0 10px; }
+.spor-prog__goal { font-size: 0.88rem; color: var(--accent); margin-bottom: 8px; font-weight: 600; }
 .spor-list { margin: 12px 0 0; padding-left: 18px; }
 .spor-list li { color: #cdd5e8; font-size: 0.93rem; margin-bottom: 7px; line-height: 1.5; }
+.spor-prog__prog {
+  margin-top: 12px; padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem; color: var(--text-dim);
+}
+.spor-prog__prog b { color: var(--accent-2); }
 
 /* ---------- Dünyaca ünlü projeler kartı ---------- */
 .wproj__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
