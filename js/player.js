@@ -65,6 +65,7 @@
     const audio = new Audio();
     audio.preload = "metadata";
     let cur = -1;
+    let wantResume = false;      // çalması gerekiyor mu (yenileme sonrası devam için)
     const subs = [];
     let saveTick = 0;
 
@@ -78,21 +79,38 @@
       if (!tracks.length) return;
       cur = (i + tracks.length) % tracks.length;
       audio.src = tracks[cur].src;
+      setMediaMeta();
       if (autoplay) play();
       emit(); save(); updateMini();
     }
-    function play() { audio.play().catch(() => {}); }
-    function pause() { audio.pause(); }
+    function play() { wantResume = true; audio.play().catch(() => {}); }
+    function pause() { wantResume = false; audio.pause(); }
     function toggle() { if (cur < 0) load(0, true); else audio.paused ? play() : pause(); }
     function next() { load(cur + 1, true); }
     function prev() { load(cur - 1, true); }
+
+    // Kilit ekranı / medya tuşları (mobil + masaüstü)
+    function setMediaMeta() {
+      if (!("mediaSession" in navigator) || cur < 0) return;
+      try {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: tracks[cur].title, artist: tracks[cur].artist || "COB", album: "COB",
+        });
+      } catch (e) {}
+    }
+    if ("mediaSession" in navigator) {
+      navigator.mediaSession.setActionHandler("play", play);
+      navigator.mediaSession.setActionHandler("pause", pause);
+      navigator.mediaSession.setActionHandler("previoustrack", prev);
+      navigator.mediaSession.setActionHandler("nexttrack", next);
+    }
 
     audio.addEventListener("timeupdate", () => {
       emit(); updateMiniProgress();
       if (++saveTick % 8 === 0) save();
     });
     audio.addEventListener("ended", next);
-    audio.addEventListener("play", () => { emit(); save(); updateMini(); });
+    audio.addEventListener("play", () => { wantResume = true; emit(); save(); updateMini(); });
     audio.addEventListener("pause", () => { emit(); save(); updateMini(); });
     audio.addEventListener("loadedmetadata", emit);
     window.addEventListener("beforeunload", save);
@@ -140,14 +158,29 @@
       if (saved && saved.cur >= 0 && saved.cur < tracks.length) {
         cur = saved.cur;
         audio.src = tracks[cur].src;
+        setMediaMeta();
         audio.addEventListener("loadedmetadata", function once() {
           if (saved.time) audio.currentTime = saved.time;
           audio.removeEventListener("loadedmetadata", once);
         });
         updateMini();
-        if (saved.playing) play();
+        if (saved.playing) { wantResume = true; play(); }   // engellenirse ilk dokunuşta devam eder
       }
     } catch (e) {}
+
+    // Tarayıcı otomatik çalmayı engellediyse: ilk kullanıcı etkileşiminde kaldığı yerden devam et
+    // (müzik/oynatıcı kontrollerine dokunmayı hariç tutar, çakışmayı önler)
+    function resumeOnInteract(e) {
+      if (e.target.closest && e.target.closest(".mini, .player")) return;
+      if (wantResume && cur >= 0 && audio.paused) audio.play().catch(() => {});
+    }
+    ["pointerdown", "touchstart", "keydown"].forEach((ev) =>
+      document.addEventListener(ev, resumeOnInteract, { passive: true })
+    );
+    // Sekmeye geri dönülünce de dene
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden && wantResume && cur >= 0 && audio.paused) audio.play().catch(() => {});
+    });
 
     window.Player = {
       audio, tracks,
