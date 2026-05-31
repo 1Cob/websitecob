@@ -85,7 +85,9 @@
     let url;
     try { url = new URL(a.href); } catch { return; }
     if (url.origin !== location.origin) return;
-    if (!/\.html($|\?)/.test(url.pathname + url.search)) return;   // yalnızca .html
+    // Gerçek dosyaları (görsel, pdf, ses, vb.) SPA dışında bırak; .html ve uzantısız
+    // (Netlify "Pretty URLs") sayfaları yakala.
+    if (/\.(png|jpe?g|gif|svg|webp|avif|ico|pdf|zip|rar|7z|mp3|m4a|wav|ogg|flac|mp4|mov|json|xml|txt|csv|css|js|woff2?|ttf)($|\?)/i.test(url.pathname)) return;
     e.preventDefault();
     if (url.href === location.href) return;
     navigate(url.href, true);
