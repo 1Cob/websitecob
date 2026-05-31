@@ -543,3 +543,95 @@ const ENG_PROJECTS = [
     img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Sydney_Australia._%2821339175489%29.jpg/1280px-Sydney_Australia._%2821339175489%29.jpg",
     note: "Betonarme kabuk (shell) çatılar; bilgisayar destekli yapısal hesabın öncü örneği." },
 ];
+
+/* ===== SPOR =====
+   Yeni başlayanlar için genel bilgilendirme amaçlı programlar.
+   Tıbbi tavsiye değildir; sağlık sorunun varsa başlamadan önce doktora danış. */
+const SPOR_BASLANGIC = [
+  { title: "Önce sağlık", text: "Kronik bir rahatsızlığın, kalp/eklem sorunun veya uzun süredir hareketsizlik varsa başlamadan önce doktora danış. Egzersiz sırasında baş dönmesi, göğüs ağrısı veya keskin ağrı olursa hemen dur." },
+  { title: "Isınma & soğuma", text: "Her antrenmana 5 dk hafif tempo + dinamik ısınmayla başla; sonunda 5 dk esneme/soğuma yap. Sakatlanmayı önlemenin en kolay yolu." },
+  { title: "Kademeli ilerle", text: "Acele etme. Süreyi, tekrarı veya ağırlığı haftada en fazla ~%10 artır. 'Az ama düzenli', çok ama ara sıradan iyidir." },
+  { title: "Form > ağırlık", text: "Doğru teknik, kaldırdığın ağırlıktan önemlidir. Hareketi yavaş ve kontrollü yap; aynaya bak ya da videoya çek." },
+  { title: "Dinlenme & uyku", text: "Kaslar antrenmanda değil, dinlenirken gelişir. Haftada 1–2 tam dinlenme günü ve günde 7–8 saat uyku şart." },
+  { title: "Su & beslenme", text: "Gün boyu yeterli su iç; yeterli protein (et, yumurta, baklagil), sebze ve karbonhidrat al. Hedefin kilo vermekse kalori dengesine dikkat." },
+];
+
+const SPOR_PROGRAMLAR = [
+  {
+    title: "30 Dakika Başlangıç — Tüm Vücut",
+    level: "Başlangıç", sure: "30–40 dk", siklik: "Haftada 3–4 gün", icon: "🏋️",
+    desc: "Hiç deneyimin yoksa buradan başla. Günaşırı yap, kasların dinlensin.",
+    hareketler: [
+      "Isınma: 5 dk tempolu yürüyüş + kol/bacak çevirme",
+      "Squat (çömelme): 3 × 12",
+      "Şınav (gerekirse dizden): 3 × 8–10",
+      "Plank (karın): 3 × 20–30 sn",
+      "Glute bridge (sırt köprüsü): 3 × 12",
+      "Lunge (öne hamle): 2 × 10 (her bacak)",
+      "Soğuma + esneme: 5 dk",
+    ],
+  },
+  {
+    title: "Tempo Yürüyüş & Kardiyo",
+    level: "Başlangıç", sure: "20–45 dk", siklik: "Haftada 4–5 gün", icon: "🚶",
+    desc: "Kalp-damar sağlığı ve yağ yakımı için en kolay başlangıç. 'Konuşabildiğin ama hafif zorlandığın' tempoyu hedefle.",
+    hareketler: [
+      "Hafta 1–2: 20–30 dk rahat tempo yürüyüş",
+      "Hafta 3–4: 30–40 dk, aralıklı (3 dk hızlı / 2 dk normal)",
+      "Hafta 5+: 40–45 dk, hafif yokuş veya tempo artışı ekle",
+      "İstersen yürüyüşü hafif koşuya çevir (yürü-koş aralıkları)",
+    ],
+  },
+  {
+    title: "Barfiks (Pull-up) Geliştirme",
+    level: "Başlangıç → Orta", sure: "15–20 dk", siklik: "Haftada 2–3 gün", icon: "🧗",
+    desc: "Henüz barfiks çekemiyorsan kademeli olarak gücü kur. Aralarda 1–2 dk dinlen.",
+    hareketler: [
+      "Ölü asılma (dead hang): 3 × 15–30 sn",
+      "Negatif barfiks (yukarıda başla, 3–5 sn'de yavaşça in): 3 × 3–5",
+      "Lastikli / destekli barfiks: 3 × 5–8",
+      "Avustralya barfiksi (masa altı / alçak bar row): 3 × 8–12",
+      "Güçlendikçe tam barfiks: 3 × maks (her hafta +1 tekrar hedefle)",
+    ],
+  },
+  {
+    title: "Dümbel Ev Programı — Tüm Vücut",
+    level: "Başlangıç → Orta", sure: "35–45 dk", siklik: "Haftada 3 gün", icon: "💪",
+    desc: "Bir çift ayarlanabilir dümbelle evde tüm vücut. Son 2 tekrar zorlayacak ağırlık seç.",
+    hareketler: [
+      "Goblet squat: 3 × 12",
+      "Tek kol dümbel row (sırt): 3 × 10 (her kol)",
+      "Göğüs press (yerde/sehpada): 3 × 10",
+      "Omuz press: 3 × 10",
+      "Romanian deadlift (dümbelle): 3 × 12",
+      "Biceps curl: 3 × 12",
+      "Plank: 3 × 30 sn",
+    ],
+  },
+  {
+    title: "Ekipmansız Ev Programı",
+    level: "Başlangıç", sure: "25–30 dk", siklik: "Haftada 3–4 gün", icon: "🤸",
+    desc: "Hiç ekipman yok — sadece vücut ağırlığı. Daireler hâlinde, aralarda 60 sn dinlen.",
+    hareketler: [
+      "Jumping jack: 3 × 30 sn",
+      "Squat: 3 × 15",
+      "Şınav: 3 × 8–12",
+      "Lunge: 3 × 10 (her bacak)",
+      "Mountain climber: 3 × 20",
+      "Glute bridge: 3 × 15",
+      "Plank: 3 × 30 sn",
+    ],
+  },
+  {
+    title: "Esneklik & Toparlanma",
+    level: "Herkes", sure: "10–15 dk", siklik: "Her gün / antrenman sonrası", icon: "🧘",
+    desc: "Esneklik ve hareket açıklığı; sakatlığı azaltır, kas ağrısını hafifletir.",
+    hareketler: [
+      "Boyun & omuz çevirme: 1–2 dk",
+      "Arka bacak (hamstring) esnetme: 2 × 30 sn",
+      "Kalça esnetme (figür-4): 2 × 30 sn (her taraf)",
+      "Kedi-deve (sırt mobilitesi): 1–2 dk",
+      "Derin nefes + gevşeme: 2 dk",
+    ],
+  },
+];

@@ -5,7 +5,8 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
   <link rel="apple-touch-icon" href="../assets/img/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yazı — COB</title>
+  <title>Spor — COB</title>
+  <meta name="description" content="Spora yeni başlayanlar için güvenli antrenman programları: tempo yürüyüş, barfiks, dümbel ve ekipmansız ev programları." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -19,7 +20,7 @@
       <button class="nav__toggle" aria-label="Menü">☰</button>
       <ul class="nav__links">
         <li><a href="../index.html">Anasayfa</a></li>
-        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="blog.html">Blog</a></li>
         <li><a href="makaleler.html">Makaleler</a></li>
         <li><a href="projeler.html">Projeler</a></li>
         <li><a href="muhendislik.html">Mühendislik</a></li>
@@ -29,14 +30,46 @@
         <li><a href="haberler.html">Haberler</a></li>
         <li><a href="hesap.html">Hesap</a></li>
         <li><a href="savnot.html">Savnot</a></li>
-        <li><a href="spor.html">Spor</a></li>
+        <li><a href="spor.html" class="active">Spor</a></li>
       </ul>
     </div>
   </nav>
 
-  <article class="article container" id="post">
-    <!-- JS ile doldurulacak -->
-  </article>
+  <header class="hero" style="padding-bottom:30px;">
+    <div class="container hero__inner">
+      <span class="hero__badge"><span class="pulse"></span> spor & forma</span>
+      <h1>Spor 💪</h1>
+      <p class="lead">Spora yeni mi başlıyorsun? Doğru ve güvenli programlarla başla; tempo yürüyüş, barfiks, dümbel ve ekipmansız ev antrenmanlarıyla <strong>adım adım gelişebilirsin.</strong></p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top:6px;">
+    <div class="container" style="max-width:900px;">
+      <p class="spor-uyari">⚠️ Bu içerik genel bilgilendirme amaçlıdır, tıbbi tavsiye değildir. Sağlık sorunun varsa başlamadan önce doktoruna danış; ağrı hissedersen dur.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">// başlamadan önce</span>
+        <h2 class="section__title">Bilinmesi Gerekenler</h2>
+        <p class="section__desc">Sağlam bir başlangıç için temel kurallar.</p>
+      </div>
+      <div class="grid grid--3" id="spor-baslangic"></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">// programlar</span>
+        <h2 class="section__title">Antrenman Programları</h2>
+        <p class="section__desc">Seviyene göre seç, haftalık uygula, geliştikçe artır.</p>
+      </div>
+      <div class="grid grid--2" id="spor-programlar"></div>
+    </div>
+  </section>
 
   <footer class="footer">
     <div class="container footer__inner">
@@ -54,7 +87,7 @@
   <script src="../js/player.js?v=4"></script>
   <script src="../js/counter.js?v=4"></script>
   <script src="../js/spa.js?v=4"></script>
-  <script src="../js/post.js?v=4"></script>
+  <script src="../js/spor.js?v=4"></script>
   <script src="../js/main.js?v=4"></script>
 </body>
 </html>
