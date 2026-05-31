@@ -1,6 +1,8 @@
 # Netlify yapılandırması — statik site + haber fonksiyonu
 [build]
   publish = "."
+  # Her dağıtımda müzik manifestini (assets/music/tracks.json) otomatik üret
+  command = "node tools/generate-music.mjs"
 
 [build.environment]
   NODE_VERSION = "20"

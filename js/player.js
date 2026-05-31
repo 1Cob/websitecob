@@ -57,9 +57,18 @@
   }
 
   async function init() {
-    let tracks = await loadManifest();            // 1) manifest (yayın)
-    if (!tracks.length) tracks = await discover(); // 2) dizin taraması (yerel geliştirme)
-    if (!tracks.length && typeof TRACKS !== "undefined") tracks = TRACKS; // 3) elle yedek
+    // Yerelde: klasörü canlı tara (dosya atınca anında görünür).
+    // Yayında: manifest (tracks.json) kullan — Netlify dizin listelemez.
+    const isLocal = /^(localhost|127\.|0\.0\.0\.0|\[?::1)/.test(location.hostname) || location.protocol === "file:";
+    let tracks = [];
+    if (isLocal) {
+      tracks = await discover();
+      if (!tracks.length) tracks = await loadManifest();
+    } else {
+      tracks = await loadManifest();
+      if (!tracks.length) tracks = await discover();
+    }
+    if (!tracks.length && typeof TRACKS !== "undefined") tracks = TRACKS; // son çare: elle yedek
 
     const KEY = "cob_player";
     const audio = new Audio();
