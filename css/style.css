@@ -403,6 +403,11 @@ img { max-width: 100%; display: block; }
 .proj__link { color: var(--accent); font-weight: 600; font-size: 0.9rem; transition: var(--trans); }
 .proj__link:hover { color: var(--accent-2); }
 
+/* ---------- Dünyaca ünlü projeler kartı ---------- */
+.wproj__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.wproj__icon { font-size: 1.9rem; }
+.wproj__meta { font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-2); margin: 4px 0 10px; }
+
 /* ---------- Mühendislik ---------- */
 .eng-section { margin-bottom: 56px; }
 .eng-section .section__head { margin-bottom: 26px; }

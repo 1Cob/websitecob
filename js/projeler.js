@@ -1,36 +1,43 @@
 /* =========================================================
-   Projeler listesi
+   Dünyaca ünlü projeler — kart listesi + etiket filtresi
    ========================================================= */
 (function () {
   const listEl = document.getElementById("project-list");
+  const filtersEl = document.getElementById("filters");
   const emptyEl = document.getElementById("empty");
   if (!listEl || typeof PROJECTS === "undefined") return;
 
-  const STATUS = {
-    tamamlandi: { label: "Tamamlandı", cls: "badge--ok" },
-    devam:      { label: "Devam ediyor", cls: "badge--wip" },
-    fikir:      { label: "Fikir", cls: "badge--idea" },
-  };
-  const LINK_LABEL = { demo: "Dene →", repo: "Kod", site: "Siteye git →" };
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   if (!PROJECTS.length) { emptyEl.style.display = "block"; return; }
 
-  listEl.innerHTML = PROJECTS.map((p) => {
-    const st = STATUS[p.status] || STATUS.fikir;
-    const tags = (p.tags || []).map((t) => `<span class="pill">${t}</span>`).join("");
-    const links = Object.entries(p.links || {})
-      .map(([k, url]) => `<a class="proj__link" href="${url}">${LINK_LABEL[k] || k}</a>`)
-      .join("");
-    return `
-      <article class="card reveal in">
-        <div class="proj__top">
-          <span class="badge ${st.cls}">${st.label}</span>
-          <span class="card__meta" style="margin:0">${p.year || ""}</span>
+  const tags = ["Tümü", ...new Set(PROJECTS.map((p) => p.tag).filter(Boolean))];
+  let active = "Tümü";
+
+  function renderFilters() {
+    if (!filtersEl) return;
+    filtersEl.innerHTML = tags.map((t) =>
+      `<button class="chip ${t === active ? "chip--on" : ""}" data-tag="${t}">${t}</button>`
+    ).join("");
+    filtersEl.querySelectorAll(".chip").forEach((b) =>
+      b.addEventListener("click", () => { active = b.dataset.tag; renderFilters(); renderList(); })
+    );
+  }
+
+  function renderList() {
+    const items = active === "Tümü" ? PROJECTS : PROJECTS.filter((p) => p.tag === active);
+    listEl.innerHTML = items.map((p) => `
+      <article class="card wproj reveal in">
+        <div class="wproj__top">
+          <span class="wproj__icon">${p.icon || "🏗️"}</span>
+          ${p.tag ? `<span class="pill">${esc(p.tag)}</span>` : ""}
         </div>
-        <h3 class="card__title">${p.title}</h3>
-        <p class="card__text">${p.desc}</p>
-        <div class="pills">${tags}</div>
-        ${links ? `<div class="proj__links">${links}</div>` : ""}
-      </article>`;
-  }).join("");
+        <h3 class="card__title">${esc(p.name)}</h3>
+        <div class="wproj__meta">${esc(p.loc || "")}${p.year ? " · " + esc(p.year) : ""}${p.stat ? " · " + esc(p.stat) : ""}</div>
+        <p class="card__text">${esc(p.desc || "")}</p>
+      </article>`).join("");
+  }
+
+  renderFilters();
+  renderList();
 })();
