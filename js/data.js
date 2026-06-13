@@ -539,8 +539,164 @@ const COURSES = [
       },
     ],
   },
-  { id: "mukavemet1", title: "Mukavemet 1", subtitle: "Gerilme, şekil değiştirme, burulma, eğilme", soon: true, topics: [] },
-  { id: "mukavemet2", title: "Mukavemet 2", subtitle: "Gerilme dönüşümü, burkulma, sehim", soon: true, topics: [] },
+  {
+    id: "mukavemet1",
+    title: "Mukavemet 1",
+    subtitle: "Gerilme, şekil değiştirme, eksenel yük, burulma ve eğilme",
+    topics: [
+      {
+        title: "Gerilme (stress)",
+        body: `
+          <p>Gerilme, bir kesitte birim alana düşen iç kuvvettir. İki temel türü vardır: kesite <strong>dik</strong> normal gerilme (σ) ve kesite <strong>paralel</strong> kayma gerilmesi (τ).</p>
+          <div class="ders-f">Normal: σ = N / A &nbsp;&nbsp; Kayma: τ = V / A &nbsp;&nbsp; Birim: 1 Pa = 1 N/m², pratikte MPa = N/mm²</div>
+          <p>Çekme gerilmesi (+), basınç (−) kabul edilir. Aynı kuvvet altında kesit alanı küçükse gerilme büyür — kırılma çoğu zaman en küçük kesitte başlar.</p>
+          <p class="ders-ex"><b>Örnek:</b> 20 kN çekme kuvveti, 100 mm² kesitli çubukta → σ = 20000 N / 100 mm² = 200 MPa.</p>`,
+      },
+      {
+        title: "Şekil değiştirme ve Hooke yasası",
+        body: `
+          <p>Birim şekil değiştirme (ε), boydaki değişimin ilk boya oranıdır (birimsiz). Elastik bölgede gerilme ile orantılıdır; orantı sabiti <strong>elastisite modülü E</strong>'dir.</p>
+          <div class="ders-f">ε = ΔL / L &nbsp;&nbsp; Hooke: σ = E·ε &nbsp;&nbsp; (çelik E ≈ 200 GPa, alüminyum ≈ 70 GPa, beton ≈ 30 GPa)</div>
+          <p>Gerilme–şekil değiştirme eğrisinde: orantı sınırı, akma noktası, en büyük dayanım ve kopma yer alır. Akmaya kadar yük kaldırılırsa eleman eski boyuna döner (elastik); akma aşılırsa kalıcı şekil değiştirme olur.</p>
+          <p class="ders-ex"><b>Örnek:</b> σ = 200 MPa, E = 200 GPa → ε = 200/200000 = 0,001 = %0,1.</p>`,
+      },
+      {
+        title: "Eksenel yükleme ve uzama",
+        body: `
+          <p>Eksenel yüklü bir çubuğun toplam uzaması, gerilme ve Hooke yasasından türetilir. Kesit/kuvvet boyunca değişiyorsa parçalara bölünür ya da integral alınır.</p>
+          <div class="ders-f">δ = N·L / (A·E) &nbsp;&nbsp; Birden çok parça: δ = Σ NᵢLᵢ / (AᵢEᵢ)</div>
+          <p>A·E çarpımı "eksenel rijitlik"tir; büyükse aynı yük altında uzama küçük olur. Kademeli çubuklarda her bölümün uzaması ayrı hesaplanıp toplanır.</p>
+          <p class="ders-ex"><b>Örnek:</b> N=20 kN, L=2 m, A=100 mm², E=200 GPa → δ = (20000·2000)/(100·200000) = 2 mm.</p>`,
+      },
+      {
+        title: "Poisson oranı ve kayma modülü",
+        body: `
+          <p>Bir çubuk eksende uzarken yanal olarak incelir. Yanal şekil değiştirmenin eksenele oranı <strong>Poisson oranı (ν)</strong>'dır (çelik için ≈ 0,3). Kayma için karşılığı <strong>kayma modülü G</strong>'dir.</p>
+          <div class="ders-f">ν = −ε_yanal / ε_eksenel &nbsp;&nbsp; τ = G·γ &nbsp;&nbsp; G = E / [2(1+ν)]</div>
+          <p>γ kayma şekil değiştirmesidir (açısal). Bu üç sabit (E, G, ν) birbirine bağlıdır; ikisi bilinince üçüncüsü bulunur.</p>
+          <p class="ders-ex"><b>Örnek:</b> E=200 GPa, ν=0,3 → G = 200/[2(1,3)] ≈ 76,9 GPa.</p>`,
+      },
+      {
+        title: "Sıcaklık (termal) gerilmeleri",
+        body: `
+          <p>Sıcaklık değişimi cismi serbestçe uzatır/kısaltır. Eleman engellenmemişse gerilme oluşmaz, sadece boy değişir. Ama iki ucu tutulu (engelli) ise uzayamadığı için <strong>termal gerilme</strong> doğar.</p>
+          <div class="ders-f">Serbest uzama: δ_T = α·ΔT·L &nbsp;&nbsp; Tam engelli: σ = E·α·ΔT &nbsp;(çelik α ≈ 12×10⁻⁶/°C)</div>
+          <p>Bu yüzden köprü, ray ve uzun yapılarda <strong>genleşme derzi</strong> bırakılır; aksi halde sıcakta büyük basınç gerilmeleri ve burkulma olur.</p>
+          <p class="ders-ex"><b>Örnek:</b> İki ucu tutulu çelik çubuk ΔT=+30°C → σ = 200000·12×10⁻⁶·30 = 72 MPa (basınç).</p>`,
+      },
+      {
+        title: "Burulma (torsion)",
+        body: `
+          <p>Bir mili kendi ekseni etrafında döndüren momente <strong>burulma momenti (T)</strong> denir. Dairesel kesitte kayma gerilmesi merkezde sıfır, dış yüzeyde en büyüktür.</p>
+          <div class="ders-f">τ = T·ρ / J &nbsp;&nbsp; Dönme açısı: φ = T·L / (G·J) &nbsp;&nbsp; Dolu daire: J = π·d⁴/32</div>
+          <p>J polar atalet momentidir. İçi boş mil, aynı malzemeyle daha hafif olup yüksek burulma direnci verir (malzeme dışta toplanır).</p>
+          <p class="ders-ex"><b>Örnek:</b> d=40 mm dolu mil, T=500 N·m → J=π·40⁴/32 ≈ 2,51×10⁵ mm⁴; τ_max = 500000·20/251000 ≈ 39,8 MPa.</p>`,
+      },
+      {
+        title: "Eğilmede normal gerilme",
+        body: `
+          <p>Eğilen kirişte üst lifler kısalır (basınç), alt lifler uzar (çekme); ortada gerilmenin sıfır olduğu <strong>tarafsız eksen</strong> bulunur. Gerilme, tarafsız eksenden uzaklıkla doğrusal artar.</p>
+          <div class="ders-f">σ = M·y / I &nbsp;&nbsp; En büyük: σ_max = M / W &nbsp;&nbsp; (W = I / y_max: mukavemet momenti)</div>
+          <p>Kiriş yüksekliğini artırmak I'yı küpsel büyüttüğü için eğilme direncini en çok artıran yoldur. Bu yüzden kirişler "yüksek" tasarlanır (I, kutu, T profilleri).</p>
+          <p class="ders-ex"><b>Örnek:</b> 50×150 mm dikdörtgen, M=6 kN·m. I=50·150³/12=1,40×10⁷ mm⁴; y=75 → σ_max=6×10⁶·75/1,40×10⁷ ≈ 32,1 MPa.</p>`,
+      },
+      {
+        title: "Kirişte kayma gerilmesi",
+        body: `
+          <p>Eğilen kirişte, kesme kuvveti (V) kesit içinde kayma gerilmesi de oluşturur. Bu gerilme tarafsız eksende en büyük, dış liflerde sıfırdır.</p>
+          <div class="ders-f">τ = V·Q / (I·b) &nbsp;&nbsp; Dikdörtgende: τ_max = 1,5 · V / A</div>
+          <p>Q, kesilen alanın tarafsız eksene göre statik momentidir. I-profillerinde kaymayı çoğunlukla gövde taşır; bu yüzden kesme kontrolünde gövde alanı önemlidir.</p>
+          <p class="ders-ex"><b>Örnek:</b> Dikdörtgen kesit, V=30 kN, A=7500 mm² → τ_max = 1,5·30000/7500 = 6 MPa.</p>`,
+      },
+      {
+        title: "Emniyet gerilmesi ve tasarım",
+        body: `
+          <p>Belirsizliklere (malzeme, yük, üretim) karşı, izin verilen gerilme malzeme dayanımının altında tutulur. Oran <strong>emniyet katsayısı (n)</strong>'dır.</p>
+          <div class="ders-f">σ_emniyet = σ_akma / n &nbsp;&nbsp; Tasarım: σ_çalışma ≤ σ_emniyet &nbsp;(yapılarda n ≈ 1,5–3)</div>
+          <p>Kesit boyutlandırma: önce iç kuvvet (N, M, V) bulunur, sonra σ ≤ σ_emniyet koşulundan gerekli alan/kesit seçilir. Modern yönetmelikler bunu yük ve dayanım faktörleriyle (LRFD) yapar.</p>
+          <p class="ders-ex"><b>Örnek:</b> σ_akma=240 MPa, n=2 → σ_emniyet=120 MPa. 30 kN çekme için gereken alan: A ≥ 30000/120 = 250 mm².</p>`,
+      },
+    ],
+  },
+  {
+    id: "mukavemet2",
+    title: "Mukavemet 2",
+    subtitle: "Bileşik yük, gerilme dönüşümü, burkulma, sehim ve enerji",
+    topics: [
+      {
+        title: "Bileşik yükleme",
+        body: `
+          <p>Gerçek elemanlar genelde aynı anda birden çok etki taşır (eksenel + eğilme, eğilme + burulma...). Doğrusal davranışta etkiler <strong>üst üste eklenir</strong> (süperpozisyon).</p>
+          <div class="ders-f">Eksenel + eğilme: σ = N/A ± M·y/I &nbsp;&nbsp; (aynı noktada toplam gerilme)</div>
+          <p>İşaretlere dikkat: eğilmenin çekme tarafı ile eksenel çekme aynı yönde toplanır. Eksantrik (merkez dışı) yük de N/A + M/W olarak çözülür (M = N·e).</p>
+          <p class="ders-ex"><b>Örnek:</b> Kolona N=100 kN basınç, e=50 mm dışmerkez. M=100·0,05=5 kN·m; gerilme bir kenarda artar, diğerinde azalır (σ = N/A ± M/W).</p>`,
+      },
+      {
+        title: "Düzlem gerilme ve dönüşüm",
+        body: `
+          <p>Bir noktadaki gerilme durumu, baktığın <strong>açıya göre</strong> değişir. Dönüşüm denklemleri, σx, σy, τxy bilindiğinde herhangi bir θ açısındaki gerilmeleri verir.</p>
+          <div class="ders-f">σθ = (σx+σy)/2 + (σx−σy)/2·cos2θ + τxy·sin2θ<br>τθ = −(σx−σy)/2·sin2θ + τxy·cos2θ</div>
+          <p>Amaç: malzemenin en çok zorlandığı yönü (en büyük gerilme) bulmak. Çünkü kırılma, en yüksek gerilmenin olduğu düzlemde başlar.</p>
+          <p class="ders-ex"><b>Örnek:</b> σx=80, σy=20, τxy=30 MPa için θ=30°'de σθ ve τθ formüllere konup hesaplanır.</p>`,
+      },
+      {
+        title: "Asal gerilmeler ve maksimum kayma",
+        body: `
+          <p><strong>Asal gerilmeler</strong> (σ₁, σ₂), kayma gerilmesinin sıfır olduğu düzlemlerdeki en büyük ve en küçük normal gerilmelerdir. Tasarımda kritik değerlerdir.</p>
+          <div class="ders-f">σ₁,₂ = (σx+σy)/2 ± √[((σx−σy)/2)² + τxy²]<br>τ_max = √[((σx−σy)/2)² + τxy²] = (σ₁−σ₂)/2</div>
+          <p>Sünek malzemeler genelde maksimum kaymada, gevrek malzemeler maksimum çekmede göçer.</p>
+          <p class="ders-ex"><b>Örnek:</b> σx=80, σy=20, τxy=30 → ortalama=50, yarıçap=√(30²+30²)=42,4 → σ₁=92,4, σ₂=7,6 MPa; τ_max=42,4 MPa.</p>`,
+      },
+      {
+        title: "Mohr dairesi",
+        body: `
+          <p>Mohr dairesi, gerilme dönüşümünü görselleştiren bir çemberdir. Merkezi (σx+σy)/2'de, yarıçapı τ_max kadardır. Çember üzerindeki her nokta bir düzlemdeki (σ, τ) çiftini verir.</p>
+          <div class="ders-f">Merkez C = (σx+σy)/2 &nbsp;&nbsp; Yarıçap R = √[((σx−σy)/2)² + τxy²]<br>σ₁ = C+R · σ₂ = C−R · τ_max = R</div>
+          <p>Asal gerilmeler çemberin yatay eksenle kesiştiği noktalar; en büyük kayma çemberin tepe noktasıdır. Açıların gerçekte yarısı çemberde gösterilir (2θ).</p>
+          <p class="ders-ex"><b>Örnek:</b> Yukarıdaki durumda çember merkezi 50, yarıçapı 42,4; soldan/sağdan kesişimler σ₂=7,6 ve σ₁=92,4 MPa.</p>`,
+      },
+      {
+        title: "Kolon burkulması (Euler)",
+        body: `
+          <p>Narin (uzun-ince) basınç çubukları, malzeme ezilmeden çok önce yana atarak (burkularak) göçer. Kritik yük Euler formülüyle bulunur.</p>
+          <div class="ders-f">P_cr = π²·E·I / (L_k)² &nbsp;&nbsp; L_k = K·L (mesnet katsayısı)<br>K: iki ucu mafsallı=1 · ankastre-serbest=2 · iki ucu ankastre=0,5</div>
+          <p>Burkulma yükü kesitin <strong>en küçük</strong> atalet momentine bağlıdır (çubuk zayıf eksenden atar). Narinlik arttıkça (uzun, ince) kritik yük hızla düşer.</p>
+          <p class="ders-ex"><b>Örnek:</b> İki ucu mafsallı, L=3 m, E=200 GPa, I=2×10⁶ mm⁴ → P_cr = π²·200000·2×10⁶/3000² ≈ 438 kN.</p>`,
+      },
+      {
+        title: "Kirişlerde sehim (deflection)",
+        body: `
+          <p>Yük altında kirişin düşey yer değiştirmesine <strong>sehim</strong> denir. Servis (kullanım) açısından sınırlanır; çok sehen kiriş çatlatır, titreşir, kötü görünür.</p>
+          <div class="ders-f">Elastik eğri: EI·y'' = M(x) &nbsp;&nbsp; (iki kez integralle y(x) bulunur)<br>Tipik: ortadan tekil yük P, basit kiriş → δ_max = P·L³/(48·EI)<br>Yayılı yük w → δ_max = 5·w·L⁴/(384·EI)</div>
+          <p>EI "eğilme rijitliği"dir. Açıklık (L) dördüncü kuvvetle girer; bu yüzden açıklığı büyütmek sehimi çok artırır.</p>
+          <p class="ders-ex"><b>Örnek:</b> P=20 kN, L=4 m, EI=2×10¹³ N·mm² → δ = 20000·4000³/(48·2×10¹³) ≈ 1,33 mm.</p>`,
+      },
+      {
+        title: "Statik belirsiz (hiperstatik) sistemler",
+        body: `
+          <p>Bilinmeyen tepki sayısı denge denklemlerinden fazlaysa sistem <strong>hiperstatiktir</strong>; tek başına denge yetmez. Ek olarak <strong>uygunluk (deformasyon) koşulları</strong> yazılır.</p>
+          <div class="ders-f">Çözüm: Denge denklemleri + uygunluk (ör. mesnette sehim = 0) → tüm bilinmeyenler</div>
+          <p>Süperpozisyon yöntemi: fazla mesneti kaldır, sehimi hesapla; sonra o mesnedin kuvvetinin tek başına yaptığı ters sehimi eşitle. Hiperstatik sistemler daha rijit ve güvenlidir (yük yolu çoktur).</p>
+          <p class="ders-ex"><b>Örnek:</b> Üç mesnetli sürekli kiriş: orta mesnet tepkisi, orta noktada sehim=0 koşuluyla bulunur.</p>`,
+      },
+      {
+        title: "Enerji yöntemleri",
+        body: `
+          <p>Bir elemanda biriken şekil değiştirme enerjisi, yer değiştirme hesabında güçlü bir araçtır. <strong>Castigliano teoremi</strong> ile karmaşık sistemlerde sehim/dönme kolayca bulunur.</p>
+          <div class="ders-f">Eksenel enerji: U = N²L/(2AE) · Eğilme: U = ∫ M²/(2EI) dx<br>Castigliano: δ = ∂U/∂P (yük yönündeki yer değiştirme)</div>
+          <p>Virtüel iş yöntemi de benzer mantıkla, birim sanal yük uygulayıp gerçek deformasyonla çarparak yer değiştirme verir. Kafes ve çerçevelerde çok pratiktir.</p>
+          <p class="ders-ex"><b>Örnek:</b> Ucundan P yüklü konsolun uç sehimi, U = ∫M²/(2EI)dx alınıp ∂U/∂P ile δ = P·L³/(3EI) olarak bulunur.</p>`,
+      },
+      {
+        title: "Göçme kriterleri",
+        body: `
+          <p>Çok eksenli gerilme altında malzeme ne zaman göçer? Tek eksenli akma dayanımını çok eksenli duruma bağlayan kriterler kullanılır.</p>
+          <div class="ders-f">von Mises (sünek): σ_eş = √(σ₁²−σ₁σ₂+σ₂²) ≤ σ_akma<br>Tresca (maks. kayma): (σ₁−σ₂) ≤ σ_akma</div>
+          <p>Sünek metaller için von Mises gerçeğe daha yakındır; Tresca daha güvenli (muhafazakâr) tarafta kalır. Gevrek malzemelerde ise maksimum normal gerilme kriteri kullanılır.</p>
+          <p class="ders-ex"><b>Örnek:</b> σ₁=92,4, σ₂=7,6 MPa → σ_eş=√(92,4²−92,4·7,6+7,6²) ≈ 89 MPa; σ_akma=240 ise güvenli.</p>`,
+      },
+    ],
+  },
   { id: "betonarme1", title: "Betonarme 1", subtitle: "Malzeme, eğilme, kesme, kenetlenme", soon: true, topics: [] },
   { id: "betonarme2", title: "Betonarme 2", subtitle: "Kolon, temel, döşeme, detaylandırma", soon: true, topics: [] },
 ];
