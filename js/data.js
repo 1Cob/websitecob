@@ -467,7 +467,78 @@ const COURSES = [
       },
     ],
   },
-  { id: "statik2", title: "Statik 2", subtitle: "Kafes, sürtünme, atalet, iç kuvvetler", soon: true, topics: [] },
+  {
+    id: "statik2",
+    title: "Statik 2",
+    subtitle: "Kafes sistemler, sürtünme, atalet momenti ve iç kuvvetler",
+    topics: [
+      {
+        title: "Kafes sistemler ve düğüm yöntemi",
+        body: `
+          <p>Kafes (truss), uçlarından mafsallı birleşen ve yalnızca <strong>eksenel kuvvet</strong> (çekme veya basınç) taşıyan çubuklardan oluşan sistemdir. Yükler düğüm noktalarına etki eder; çubuklar eğilme almaz.</p>
+          <p>Temel varsayımlar: çubuklar ağırlıksız, birleşimler sürtünmesiz mafsal, dış yükler yalnızca düğümlerde.</p>
+          <div class="ders-f">Her düğümde: ΣFₓ = 0 &nbsp;&nbsp; ΣF_y = 0 &nbsp;(düğüm başına 2 denklem)</div>
+          <p>Çözüme, bilinmeyen çubuk kuvveti en az (1–2) olan düğümden başlanır. Çubuktan uzağa doğru çıkan kuvvet <em>çekme</em> (+), düğüme doğru olan <em>basınç</em> (−) kabul edilir.</p>
+          <p class="ders-ex"><b>Örnek:</b> Üçgen bir kafeste, yük uygulanan düğümde ΣF_y = 0 yazılıp ilk çubuk kuvveti, ardından ΣFₓ = 0 ile ikinci çubuk bulunur.</p>`,
+      },
+      {
+        title: "Kafeste kesim (kesit) yöntemi",
+        body: `
+          <p>Belirli bir çubuğun kuvvetini doğrudan bulmak için kafes, hayalî bir <strong>kesitle</strong> ikiye ayrılır ve bir parçanın dengesi yazılır. Tüm rijit cisim denge denklemleri kullanılabilir.</p>
+          <div class="ders-f">Kesilen parça için: ΣFₓ = 0 &nbsp;&nbsp; ΣF_y = 0 &nbsp;&nbsp; ΣM = 0</div>
+          <p>İdeal kesim en çok 3 bilinmeyen çubuğu keser. <strong>Moment merkezi</strong>ni, diğer iki bilinmeyenin kesiştiği noktaya alırsan aradığın çubuğu tek denklemde çözersin.</p>
+          <p class="ders-ex"><b>Örnek:</b> Köprü kafesinde ortadaki bir alt başlık çubuğunun kuvvetini bulmak için o bölgeden kesip, üst düğüme göre ΣM = 0 yazmak yeterlidir.</p>`,
+      },
+      {
+        title: "Çerçeveler ve makineler",
+        body: `
+          <p>Çerçeve (frame), en az bir <strong>çok-kuvvetli eleman</strong> içeren ve sabit yük taşıyan yapıdır; makine ise kuvvet iletmek/çoğaltmak için hareketli parçalar içerir.</p>
+          <p>Çözümde sistem elemanlara ayrılır, her elemanın serbest cisim diyagramı çizilir ve birleşim noktalarında <strong>etki–tepki</strong> (Newton 3) uygulanır.</p>
+          <div class="ders-f">Her eleman için: ΣFₓ = 0 · ΣF_y = 0 · ΣM = 0</div>
+          <p class="ders-ex"><b>Örnek:</b> Bir kıskaçta (makine) tutma kuvvetini bulmak için kollar ayrı ayrı çözülüp mafsaldaki tepkiler ortak alınır.</p>`,
+      },
+      {
+        title: "Ağırlık merkezi (centroid)",
+        body: `
+          <p>Bir alanın ya da cismin ağırlık merkezi, alanın "dengelendiği" noktadır. Bileşik şekiller, basit parçalara bölünerek bulunur.</p>
+          <div class="ders-f">x̄ = Σ(x_i·A_i) / ΣA_i &nbsp;&nbsp; ȳ = Σ(y_i·A_i) / ΣA_i</div>
+          <p>Boşluk (delik) negatif alan olarak işleme katılır. Simetri ekseni varsa ağırlık merkezi o eksen üzerindedir.</p>
+          <p class="ders-ex"><b>Örnek:</b> L kesitini iki dikdörtgene böl; her birinin alanı ve kendi merkezini bulup formülde topla.</p>`,
+      },
+      {
+        title: "Atalet momenti (ikinci alan momenti)",
+        body: `
+          <p>Atalet momenti, bir kesitin eğilmeye karşı direncinin ölçüsüdür; malzeme eksene ne kadar uzaksa katkısı o kadar büyüktür.</p>
+          <div class="ders-f">I = ∫ y² dA &nbsp;|&nbsp; Dikdörtgen: I = b·h³/12 &nbsp;|&nbsp; Paralel eksen: I = I_c + A·d²</div>
+          <p>Yükseklik (h) küpsel etki ettiği için kiriş yüksekliğini artırmak direnci en çok büyüten yoldur. Paralel eksen teoremi, kendi merkezinden uzaktaki parçaların katkısını ekler.</p>
+          <p class="ders-ex"><b>Örnek:</b> 100×300 mm dikdörtgen kesit: I = 100·300³/12 = 2,25×10⁸ mm⁴.</p>`,
+      },
+      {
+        title: "Sürtünme",
+        body: `
+          <p>Kuru (Coulomb) sürtünme, temas eden yüzeyler arasında harekete karşı koyan kuvvettir. Cisim kaymadan önce sürtünme, dengeyi sağlayacak değeri alır (statik); kayma anında en yüksek değere ulaşır.</p>
+          <div class="ders-f">Kaymadan önce: F ≤ μ_s·N &nbsp;&nbsp; Kayma anında: F = μ_k·N &nbsp;(μ_k &lt; μ_s)</div>
+          <p>Sürtünme açısı φ = arctan(μ). Eğik düzlemde cisim, eğim açısı bu değeri aşınca kaymaya başlar.</p>
+          <p class="ders-ex"><b>Örnek:</b> μ_s = 0,3 ve N = 200 N ise cismi kaydırmak için gereken en küçük yatay kuvvet F = 0,3·200 = 60 N.</p>`,
+      },
+      {
+        title: "İç kuvvetler: Normal, Kesme, Moment",
+        body: `
+          <p>Bir elemanı herhangi bir kesitten ayırdığında, denge için o kesitte üç iç tesir bulunur: <strong>normal kuvvet (N)</strong>, <strong>kesme kuvveti (V)</strong> ve <strong>eğilme momenti (M)</strong>.</p>
+          <div class="ders-f">Kesimden sonra bir parça için: ΣFₓ=0 → N · ΣF_y=0 → V · ΣM=0 → M</div>
+          <p>İşaret kuralı: çekme N pozitif; kesiti saat yönünde döndüren V pozitif; alt lifte çekme oluşturan M pozitif (yaygın kabul).</p>
+          <p class="ders-ex"><b>Örnek:</b> Ucundan P yükü taşıyan konsolun ankastre kesitinde V = P, M = P·L olur.</p>`,
+      },
+      {
+        title: "Kesme kuvveti ve moment diyagramları (V–M)",
+        body: `
+          <p>Kesme kuvveti (V) ve eğilme momentinin (M) kiriş boyunca değişimi diyagramlarla gösterilir; tasarımda en kritik kesitleri bulmak için kullanılır.</p>
+          <div class="ders-f">dV/dx = −w(x) &nbsp;&nbsp; dM/dx = V(x)</div>
+          <p>Yani yayılı yük V eğrisinin eğimini, V de M eğrisinin eğimini verir. M, V'nin sıfır olduğu yerde en büyük/küçük değerini alır. Diyagram altındaki alan, bir sonraki büyüklüğün değişimini verir.</p>
+          <p class="ders-ex"><b>Örnek:</b> Ortadan tekil yük P alan, L açıklıklı basit kirişte mesnet tepkileri P/2; orta kesitte M_max = P·L/4.</p>`,
+      },
+    ],
+  },
   { id: "mukavemet1", title: "Mukavemet 1", subtitle: "Gerilme, şekil değiştirme, burulma, eğilme", soon: true, topics: [] },
   { id: "mukavemet2", title: "Mukavemet 2", subtitle: "Gerilme dönüşümü, burkulma, sehim", soon: true, topics: [] },
   { id: "betonarme1", title: "Betonarme 1", subtitle: "Malzeme, eğilme, kesme, kenetlenme", soon: true, topics: [] },
