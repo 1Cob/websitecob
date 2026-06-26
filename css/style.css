@@ -45,12 +45,22 @@ body {
   overflow-x: hidden;
 }
 
-/* Arka plan dekoru */
+/* 3B nokta-ağı arka planı (js/bg.js) */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Arka plan dekoru (gradyan) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   background:
     radial-gradient(600px circle at 15% 0%, rgba(108, 140, 255, 0.12), transparent 45%),
     radial-gradient(700px circle at 85% 10%, rgba(56, 225, 196, 0.08), transparent 45%);

@@ -8,7 +8,7 @@
   if (window.__spa) return;
   window.__spa = true;
 
-  const PERSIST = ["player.js", "spa.js", "data.js", "counter.js"];
+  const PERSIST = ["player.js", "spa.js", "data.js", "counter.js", "bg.js"];
   let root;
   const baseName = (src) => (src || "").split("/").pop().split("?")[0];   // sürüm etiketini (?v=) yok say
 
