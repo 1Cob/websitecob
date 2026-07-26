@@ -108,11 +108,13 @@ img { max-width: 100%; display: block; }
 }
 .brand__logo {
   height: 38px;
-  width: auto;
-  display: block;
+  width: 58px;                 /* Safari flex-içi <img> için açık genişlik (0 genişlik hatasını önler) */
   object-fit: contain;
+  object-position: left center;
+  display: block;
+  flex-shrink: 0;
 }
-@media (max-width: 720px) { .brand__logo { height: 32px; } }
+@media (max-width: 720px) { .brand__logo { height: 32px; width: 48px; } }
 .nav__links {
   display: flex;
   gap: 4px;

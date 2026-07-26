@@ -52,6 +52,24 @@
   margin-top: 4px;
 }
 
+/* Mod düğmesi + düz/bilimsel geçiş */
+.calc-modebar { margin-bottom: 12px; }
+.calc-modebar .ckey { width: 100%; padding: 12px 0; font-family: var(--font-mono); }
+
+.calc__simple {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.calc__simple .ckey--zero { grid-column: span 2; }
+
+/* Düz mod: bilimsel öğeleri gizle */
+.calc.calc--basic .calc__actions,
+.calc.calc--basic .calc__sci,
+.calc.calc--basic .calc__basic { display: none; }
+/* Bilimsel mod: düz keypad'i gizle */
+.calc:not(.calc--basic) .calc__simple { display: none; }
+
 .calc__actions {
   display: grid;
   grid-template-columns: repeat(6, 1fr);

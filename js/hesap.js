@@ -346,6 +346,20 @@
 
   exprEl.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); equals(); } });
 
+  // Düz / Bilimsel mod geçişi (varsayılan: düz)
+  const calcEl = document.getElementById("calc");
+  const sciToggle = document.getElementById("sci-toggle");
+  const SCI_KEY = "hesap_sci";
+  function applyMode(sci) {
+    calcEl.classList.toggle("calc--basic", !sci);
+    sciToggle.textContent = sci ? "🔢 Düz moda geç" : "🔬 Bilimsel moda geç";
+    try { localStorage.setItem(SCI_KEY, sci ? "1" : "0"); } catch (e) {}
+  }
+  if (calcEl && sciToggle) {
+    applyMode(localStorage.getItem(SCI_KEY) === "1");
+    sciToggle.addEventListener("click", () => applyMode(calcEl.classList.contains("calc--basic")));
+  }
+
   modeBtn.textContent = mode;
   updateMemInd();
   render();

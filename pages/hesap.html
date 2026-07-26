@@ -10,8 +10,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=12" />
-  <link rel="stylesheet" href="../css/calc.css?v=12" />
+  <link rel="stylesheet" href="../css/style.css?v=13" />
+  <link rel="stylesheet" href="../css/calc.css?v=13" />
 </head>
 <body>
 
@@ -39,13 +39,16 @@
 
   <section class="game container" style="max-width:1000px;">
     <div class="game__head">
-      <h1>🧮 Bilimsel Hesap Makinesi</h1>
-      <p>İşlemler sağdaki panelde satır satır tutulur (son 50). Bir satıra tıklayınca o işleme geri dönersin; fareyle seçip kopyalayabilirsin.</p>
+      <h1>🧮 Hesap Makinesi</h1>
+      <p>Varsayılan olarak <strong>düz</strong> hesap makinesi. Üstteki düğmeyle <strong>bilimsel moda</strong> geçebilirsin. İşlemler sağda son 50 satır tutulur; bir satıra tıklayınca geri dönersin.</p>
     </div>
 
     <div class="calc-wrap">
       <!-- Hesap makinesi -->
-      <div class="calc">
+      <div class="calc calc--basic" id="calc">
+        <div class="calc-modebar">
+          <button id="sci-toggle" class="ckey ckey--mode" type="button">🔬 Bilimsel moda geç</button>
+        </div>
         <div class="calc__screen">
           <input class="calc__expr" id="expr" type="text" inputmode="text"
                  placeholder="örn. sin(30)+2^3, nCr(6,2), log2(1024)" autocomplete="off" spellcheck="false" />
@@ -146,6 +149,33 @@
           <button class="ckey ckey--op" data-ins="+">+</button>
           <button class="ckey ckey--eq" data-act="eq">=</button>
         </div>
+
+        <!-- Düz (basit) tuş takımı -->
+        <div class="calc__simple">
+          <button class="ckey ckey--warn" data-act="clear">C</button>
+          <button class="ckey ckey--warn" data-act="back">⌫</button>
+          <button class="ckey ckey--op" data-ins="%">%</button>
+          <button class="ckey ckey--op" data-ins="/">÷</button>
+
+          <button class="ckey" data-ins="7">7</button>
+          <button class="ckey" data-ins="8">8</button>
+          <button class="ckey" data-ins="9">9</button>
+          <button class="ckey ckey--op" data-ins="*">×</button>
+
+          <button class="ckey" data-ins="4">4</button>
+          <button class="ckey" data-ins="5">5</button>
+          <button class="ckey" data-ins="6">6</button>
+          <button class="ckey ckey--op" data-ins="-">−</button>
+
+          <button class="ckey" data-ins="1">1</button>
+          <button class="ckey" data-ins="2">2</button>
+          <button class="ckey" data-ins="3">3</button>
+          <button class="ckey ckey--op" data-ins="+">+</button>
+
+          <button class="ckey ckey--zero" data-ins="0">0</button>
+          <button class="ckey" data-ins=".">.</button>
+          <button class="ckey ckey--eq" data-act="eq">=</button>
+        </div>
       </div>
 
       <!-- Geçmiş paneli (sağ) -->
@@ -172,12 +202,12 @@
     </div>
   </footer>
 
-  <script src="../js/data.js?v=12"></script>
-  <script src="../js/player.js?v=12"></script>
-  <script src="../js/counter.js?v=12"></script>
-  <script src="../js/spa.js?v=12"></script>
-  <script src="../js/bg.js?v=12"></script>
-  <script src="../js/hesap.js?v=12"></script>
-  <script src="../js/main.js?v=12"></script>
+  <script src="../js/data.js?v=13"></script>
+  <script src="../js/player.js?v=13"></script>
+  <script src="../js/counter.js?v=13"></script>
+  <script src="../js/spa.js?v=13"></script>
+  <script src="../js/bg.js?v=13"></script>
+  <script src="../js/hesap.js?v=13"></script>
+  <script src="../js/main.js?v=13"></script>
 </body>
 </html>
