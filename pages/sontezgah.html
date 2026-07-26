@@ -5,8 +5,8 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
   <link rel="apple-touch-icon" href="../assets/img/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projeler — COB</title>
-  <meta name="description" content="Üzerinde çalıştığım projeler, denemeler ve işler." />
+  <title>Son Tezgah — COB</title>
+  <meta name="description" content="Son Tezgah — sontezgah.com tanıtımı." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -22,7 +22,7 @@
         <li><a href="../index.html">Anasayfa</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="makaleler.html">Makaleler</a></li>
-        <li><a href="projeler.html" class="active">Projeler</a></li>
+        <li><a href="projeler.html">Projeler</a></li>
         <li><a href="muhendislik.html">Mühendislik</a></li>
         <li><a href="oyunlar.html">Oyunlar</a></li>
         <li><a href="galeri.html">Galeri</a></li>
@@ -30,7 +30,7 @@
         <li><a href="haberler.html">Haberler</a></li>
         <li><a href="hesap.html">Hesap</a></li>
         <li><a href="savnot.html">Savnot</a></li>
-        <li><a href="sontezgah.html">Son Tezgah</a></li>
+        <li><a href="sontezgah.html" class="active">Son Tezgah</a></li>
         <li><a href="spor.html">Spor</a></li>
       </ul>
     </div>
@@ -38,17 +38,34 @@
 
   <header class="hero" style="padding-bottom:30px;">
     <div class="container hero__inner">
-      <span class="hero__badge"><span class="pulse"></span> dünyaca ünlü projeler</span>
-      <h1>Projeler 🏗️</h1>
-      <p class="lead">Tarihten bugüne insanlığın en etkileyici yapıları — yükseklikleri, yapım yılları ve nasıl inşa edildikleri.</p>
-      <div class="blog__filters" id="filters"></div>
+      <span class="hero__badge"><span class="pulse"></span> proje · sontezgah.com</span>
+      <h1><span class="grad">Son</span> Tezgah</h1>
+      <p class="lead">Sahibi olduğum projelerden biri. Aşağıdaki butondan siteye gidebilir, tüm içeriğe ulaşabilirsin.</p>
+      <div class="hero__actions">
+        <a href="https://www.sontezgah.com" target="_blank" rel="noopener" class="btn btn--primary">🌐 sontezgah.com'a git →</a>
+      </div>
     </div>
   </header>
 
   <section class="section" style="padding-top:10px;">
     <div class="container">
-      <div class="grid grid--3" id="project-list"></div>
-      <p id="empty" style="color:var(--text-mute);display:none;">Henüz proje eklenmedi.</p>
+      <div class="grid grid--3">
+        <div class="card reveal in">
+          <div class="feature__icon">🌐</div>
+          <div class="card__title">Web</div>
+          <p class="card__text">Tarayıcıdan eriş: <a href="https://www.sontezgah.com" target="_blank" rel="noopener" style="color:var(--accent)">www.sontezgah.com</a></p>
+        </div>
+        <div class="card reveal in">
+          <div class="feature__icon">✨</div>
+          <div class="card__title">Hakkında</div>
+          <p class="card__text">Son Tezgah'ın ne olduğuna dair kısa açıklamayı buraya ekleyebiliriz — birkaç cümle yaz, koyayım.</p>
+        </div>
+        <div class="card reveal in">
+          <div class="feature__icon">📩</div>
+          <div class="card__title">İletişim</div>
+          <p class="card__text">Soru ve önerilerin için: <a href="mailto:canokanbicer@gmail.com" style="color:var(--accent)">e-posta</a></p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -69,7 +86,6 @@
   <script src="../js/counter.js?v=9"></script>
   <script src="../js/spa.js?v=9"></script>
   <script src="../js/bg.js?v=9"></script>
-  <script src="../js/projeler.js?v=9"></script>
   <script src="../js/main.js?v=9"></script>
 </body>
 </html>
