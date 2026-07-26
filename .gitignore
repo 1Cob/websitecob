@@ -4,3 +4,5 @@ node_modules/
 .netlify/
 *.log
 .claude/
+package-lock.json
+package.json

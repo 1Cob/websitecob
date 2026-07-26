@@ -93,13 +93,13 @@ img { max-width: 100%; display: block; }
   height: 64px;
 }
 .brand {
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: -0.02em;
-  display: flex;
-  align-items: center;
-  gap: 9px;
+  display: block;
+  width: 60px;
+  height: 40px;
+  flex-shrink: 0;
+  background: url("../assets/img/logo-trans.png") left center / contain no-repeat;
 }
+@media (max-width: 720px) { .brand { width: 50px; height: 34px; } }
 .brand__dot {
   width: 12px; height: 12px;
   border-radius: 50%;
